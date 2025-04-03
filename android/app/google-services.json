@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "226854017190",
+    "project_id": "amjad-base",
+    "storage_bucket": "amjad-base.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226854017190:android:54bea164cee012384ebc67",
+        "android_client_info": {
+          "package_name": "com.example.amjad_base"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALgylVMSH5-fNLAYIW1AGeR3gh9foA3DU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
