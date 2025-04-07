@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+
+import 'View/LoginPage.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   if(kIsWeb){
@@ -40,9 +42,25 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-class FlashPage extends StatelessWidget {
+class FlashPage extends StatefulWidget {
   const FlashPage({super.key});
 
+  @override
+  State<FlashPage> createState() => _FlashPageState();
+}
+
+class _FlashPageState extends State<FlashPage> {
+  @override
+  void initState() {
+    super.initState();
+    // Navigate to LoginPage after 5 seconds
+    Future.delayed(Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Loginpage()),
+      );
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
