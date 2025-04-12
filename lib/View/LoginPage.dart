@@ -1,4 +1,6 @@
+import 'package:amjad_base/Screens/Home.dart';
 import 'package:amjad_base/View/ClassesPage.dart';
+import 'package:amjad_base/View/stats.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,6 +18,11 @@ class _LoginpageState extends State<Loginpage> {
       resizeToAvoidBottomInset: false, // Prevent resize on keyboard
       appBar: AppBar(
         toolbarHeight: 100,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(15),
+          ),
+        ),
         title: Image.asset("assets/logo.jpeg", width: 120, height: 120),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -93,10 +100,11 @@ class _LoginpageState extends State<Loginpage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height *0.18),
+                  SizedBox(height: MediaQuery.sizeOf(context).height *0.22),
                   ElevatedButton(
+
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Classespage()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Home()));
                     },
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero,
@@ -109,13 +117,29 @@ class _LoginpageState extends State<Loginpage> {
                           borderRadius: BorderRadius.circular(40)),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width*0.5,
-                        height: MediaQuery.sizeOf(context).height *0.06,
+                        height: MediaQuery.sizeOf(context).height *0.07,
                         alignment: Alignment.center,
 
-                        child:  Text(
-                          'دخول',
-                          style: GoogleFonts.cairo(fontSize: 18,fontWeight:FontWeight.bold , color: Colors.white),
+                        child:  Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
 
+                            Padding(
+                              padding: const EdgeInsets.only(left:25.0),
+                              child: Icon(
+                                Icons.arrow_circle_left_outlined,
+                                size: 30,
+                                color:  Color(0xFFD0B87A),),
+                            ),
+                            SizedBox(
+                              width: 40 ,
+                            ),
+                            Text(
+                              'دخول',
+                              style: GoogleFonts.cairo(fontSize: 19,fontWeight:FontWeight.bold , color: Colors.white),
+
+                            ),
+                          ],
                         ),
                       ),
                     ),
