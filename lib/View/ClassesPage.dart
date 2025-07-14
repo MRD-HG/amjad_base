@@ -1,3 +1,7 @@
+import 'package:amjad_base/Contoller/AppBar.dart';
+import 'package:amjad_base/Screens/Home.dart';
+import 'package:amjad_base/Screens/messagingTble.dart';
+import 'package:amjad_base/View/stats.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 class Classespage extends StatefulWidget {
@@ -12,97 +16,88 @@ class _ClassespageState extends State<Classespage> {
   Widget build(BuildContext context) {
     return  Scaffold(
       resizeToAvoidBottomInset: false, // Prevent resize on keyboard
-      appBar: AppBar(
-        title:Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      appBar: CustomAppBar(leadingIcon: Icons.account_circle_outlined),
+
+      body: SizedBox.expand(
+        child: Stack(
           children: [
-            Icon(Icons.account_circle_outlined,color:Color(0xFFD0B87A),size: 50,),
+            Positioned.fill(
+              child: Image.asset(
+                "assets/zelij.jpg",
+                fit: BoxFit.cover,
+              ),
+            ),
+            Positioned.fill(
+              child: Container(
+                color: Colors.white.withOpacity(0.94),
+              ),
+            ),
+            SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
+                    buttonClass("قسم المالي", Icons.assistant_direction, () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Home()));
+                    }, context),
+                    buttonClass("قسم اللوجستيكي", Icons.assistant_direction, () {}, context),
+                    buttonClass("قسم الإداري", Icons.assistant_direction, () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MessagingTable()));
+                    }, context),
+
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
-        toolbarHeight: 100,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(15),
-          ),
-        ),
-        actions:[ Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: Image.asset("assets/logo.jpeg", width: 120, height: 120),
-        ),
-    ],
-        backgroundColor: Colors.white,
-        elevation: 0.1,
-        shadowColor: Colors.grey.withOpacity(0.5),
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: Stack(
-        children: [
-      // Background image
-      Positioned.fill(
-      child: Image.asset(
-        "assets/zelij.jpg",
-        fit: BoxFit.cover,
-      ),
-    ),
-
-    // Semi-transparent white overlay
-    Positioned.fill(
-    child: Container(
-    color: Colors.white.withOpacity(0.94),
-    ),
-    ),
-         
-    SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(height: MediaQuery.sizeOf(context).height *0.1,),
-          buttonClass("قسم اللوجستيكي", Icons.assistant_direction as IconData, (){}, context)
-        ],
-      ),
-
-    )
-  ]
-             
-    )
 
     );
   }
 
 }
-Widget buttonClass(String text, IconData icon, Function()?onTap,BuildContext context){
-  return  Ink(
-    decoration: BoxDecoration(
-        gradient:
-        LinearGradient(colors: [Color(0xFF7E082B),Color(0xFFD0B87A)]),
-        borderRadius: BorderRadius.circular(40)),
+Widget buttonClass(String text, IconData icon, Function()?onTap, BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
     child: Container(
-      width: MediaQuery.sizeOf(context).width*0.5,
-      height: MediaQuery.sizeOf(context).height *0.07,
-      alignment: Alignment.center,
-
-      child:  Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-
-          Padding(
-            padding: const EdgeInsets.only(left:25.0),
-            child: Icon(
-              icon as IconData?,
-              size: 30,
-              color:  Color(0xFFD0B87A),),
-          ),
-          SizedBox(
-            width: 40 ,
-          ),
-          Expanded(
-            child: Text(
-              text,
-              style: GoogleFonts.cairo(fontSize: 19,fontWeight:FontWeight.bold , color: Colors.white),
-            
-            ),
+      width: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.2 ,
+      decoration: BoxDecoration(
+        color: const Color(0xFF7E082B),
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 1,
+            blurRadius: 4,
+            offset: const Offset(0, 2),
           ),
         ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(15),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  text,
+                  style: GoogleFonts.cairo(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFD0B87A),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     ),
   );

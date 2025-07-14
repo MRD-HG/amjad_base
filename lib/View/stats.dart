@@ -1,3 +1,4 @@
+import 'package:amjad_base/Contoller/AppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -9,14 +10,9 @@ class StatisticsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.menu, color: Colors.black),
-          onPressed: () {},
-        ),
-      ),
+      appBar:CustomAppBar(leadingIcon: Icons.arrow_back_outlined,onIconPressed: (){
+        Navigator.pop(context);
+      },),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

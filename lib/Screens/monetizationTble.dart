@@ -1,21 +1,20 @@
+import 'package:amjad_base/Contoller/AppBar.dart';
+import 'package:amjad_base/View/stats.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../Contoller/AppBar.dart';
+import 'Home.dart';
 
-class MessagingTable extends StatelessWidget {
-  const MessagingTable({Key? key}) : super(key: key);
+class Monetizationtble extends StatelessWidget {
+  const Monetizationtble({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar:CustomAppBar(
-        leadingIcon: Icons.arrow_back_outlined,
-        onIconPressed: (){
-          Navigator.pop(context);
-        },
-      ),
+      appBar: CustomAppBar(leadingIcon: Icons.arrow_back_outlined,onIconPressed: (){
+        Navigator.push(context,MaterialPageRoute(builder: (context)=>Home()) );
+      },),
       body: Stack(
         children: [
           Positioned.fill(
@@ -30,23 +29,25 @@ class MessagingTable extends StatelessWidget {
             ),
           ),
           SafeArea(
-            child: Padding(
+            child: SingleChildScrollView(
+
+             child: Padding(
+
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
                   Row(
                     children: [
                       Text(
-                        'المراسلات الواردة',
+                        'الخزينة',
                         style: GoogleFonts.cairo(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xFF7E082B),
                         ),
                       ),
-                      const SizedBox(width: 30),
+                      const SizedBox(width: 10),
                       Icon(
-
                         Icons.download,
                         color: Color(0xFFB8A36C),
                       ),
@@ -85,52 +86,78 @@ class MessagingTable extends StatelessWidget {
                             label: Text('أدوات', style: GoogleFonts.cairo()),
                           ),
                           DataColumn(
-                            label: Text('موضوع', style: GoogleFonts.cairo()),
+                            label: Text('معلومات', style: GoogleFonts.cairo()),
                           ),
-                          DataColumn(
-                            label: Text('تاريخ', style: GoogleFonts.cairo()),
-                          ),
-                          DataColumn(
-                            label: Text('إلى', style: GoogleFonts.cairo()),
-                          ),
+
                           DataColumn(
                             label: Text('الإسم', style: GoogleFonts.cairo()),
                           ),
                         ],
                         rows: List.generate(
                           5,
-                          (index) => DataRow(
+                              (index) => DataRow(
                             cells: [
                               DataCell(Row(
                                 children: [
                                   IconButton(
                                     icon: Icon(Icons.download,
                                         color: Color(0xFFB8A36C)),
-                                    onPressed: () {},
+                                    onPressed: () {
+
+                                    },
                                   ),
                                   IconButton(
                                     icon: Icon(Icons.edit,
                                         color: Color(0xFF7E082B)),
                                     onPressed: () {},
                                   ),
-                                ],
+                                ]
                               )),
+
+
                               DataCell(Text('')),
-                              DataCell(Text('')),
-                              DataCell(Text('')),
-                              DataCell(Text('')),
+                              DataCell(
+                                  ElevatedButton(
+
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Color(0xFF7E082B),
+                                    ),
+                                    onPressed: (){
+                                        openDialog(context);
+                                    },
+                                   child: Text("إضغط",style: TextStyle(color: Colors.white),),
+                                  )
+                              ),
                             ],
                           ),
                         ),
                       ),
+
                     ),
                   ),
+                  SizedBox(height: 270,)
+
                 ],
               ),
             ),
           ),
+          ),
         ],
       ),
     );
+
   }
+  Future openDialog( BuildContext context)=>showDialog(
+    context: context,
+    builder: (context)=> AlertDialog(
+      title: Text('معلومات عامة'),
+      content: Text("مداخيل شاملة"),
+      actions: [
+        TextButton(onPressed: (){
+          Navigator.pop(context);
+        }, child: Text("عودة"))
+      ],
+    ),
+  );
+
 }

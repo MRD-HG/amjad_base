@@ -69,7 +69,7 @@ class _FlashPageState extends State<FlashPage> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/logo.jpeg",width: 250,height: 250,),
+              Image.asset("assets/Logo.jpeg",width: 250,height: 250,),
               SizedBox(height: 10,),
               Row(mainAxisAlignment: MainAxisAlignment.center,
                 children:[

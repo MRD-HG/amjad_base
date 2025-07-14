@@ -1,7 +1,12 @@
+import 'package:amjad_base/Contoller/AppBar.dart';
 import 'package:amjad_base/Screens/messagingTble.dart';
+import 'package:amjad_base/View/stats.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../Contoller/CustomButton.dart';
+import 'monetizationTble.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,35 +17,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
+
   Widget build(BuildContext context) {
     double? width = MediaQuery.sizeOf(context).width;
     double? height = MediaQuery.sizeOf(context).height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-       title: Row(
-         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-         children: [
-           IconButton(onPressed: (){},icon:Icon(Icons.menu,color: Colors.black,size: 30,))
-         ],
-       ),
-        toolbarHeight: 100,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(15),
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(2.0) ,
-            child: Image.asset("assets/logo.jpeg",width: 120,height: 120,),
-          )
-        ],
-        backgroundColor: Colors.white,
-        elevation: 0.1,
-        shadowColor: Colors.grey.withOpacity(0.5),
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
+      appBar: CustomAppBar(leadingIcon: Icons.menu, onIconPressed: (){
+
+      },),
       body: Stack(
         children: [
           Positioned.fill(
@@ -140,58 +125,26 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      child: MouseRegion(
-                       onHover:(_)=>SystemMouseCursors.click ,
-                        child: ElevatedButton(
-
-                          onPressed: () {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MessagingTable()));
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: Ink(
-
-                            decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                colors: [Color(0xFF7E082B), Color(0xFFD0B87A)],
-                              ),
-                              borderRadius: BorderRadius.circular(40),
-                            ),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * 0.07,
-                              alignment: Alignment.center,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 25.0),
-                                    child: Icon(
-                                      Icons.attachment,
-                                      size: 30,
-                                      color: Color(0xFFD0B87A),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 40),
-                                  Text(
-                                    'تقارير',
-                                    style: GoogleFonts.cairo(
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                    CustomButton(
+                      text: 'تقارير',
+                      icon: Icons.attachment,
+                      onPressed: () {
+                        Navigator.push(  // Changed from pushReplacement to push
+                            context,
+                            MaterialPageRoute(builder: (context) => StatisticsPage())
+                        );
+                      },
+                    ),
+                    SizedBox(height: height*0.02),
+                    CustomButton(
+                      text: 'الخزينة',
+                      icon: Icons.monetization_on,
+                      onPressed: () {
+                        Navigator.push(  // Changed from pushReplacement to push
+                            context,
+                            MaterialPageRoute(builder: (context) => Monetizationtble())
+                        );
+                      },
                     ),
                     const SizedBox(height: 20),
                   ],

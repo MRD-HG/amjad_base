@@ -23,7 +23,7 @@ class _LoginpageState extends State<Loginpage> {
             bottom: Radius.circular(15),
           ),
         ),
-        title: Image.asset("assets/logo.jpeg", width: 120, height: 120),
+        title: Image.asset("assets/Logo.jpeg", width: 120, height: 120 ),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0.1,
@@ -104,7 +104,7 @@ class _LoginpageState extends State<Loginpage> {
                   ElevatedButton(
 
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Home()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Classespage()));
                     },
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero,
@@ -114,7 +114,7 @@ class _LoginpageState extends State<Loginpage> {
                       decoration: BoxDecoration(
                           gradient:
                            LinearGradient(colors: [Color(0xFF7E082B),Color(0xFFD0B87A)]),
-                          borderRadius: BorderRadius.circular(40)),
+                          borderRadius: BorderRadius.circular(20)),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width*0.5,
                         height: MediaQuery.sizeOf(context).height *0.07,
